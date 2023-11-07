@@ -8,6 +8,37 @@ export async function getLinks(){
     .select('*')
     return links
 }
+export async function addLink(link:link) {
+    const { data } = await supabase
+        .from('links')
+        .insert([
+            link,
+        ])
+        .select()
+    return data
+}
+export async function deleteLink(id:number) {
+    const { error } = await supabase
+      .from('links')
+      .delete()
+      .eq('id', id)
+}
+export async function updateLink(link:link) {
+    const { data, error } = await supabase
+      .from('links')
+      .update(link)
+      .eq('id', link.id)
+      .select()
+    return data
+}
+
+export interface link{
+    id?:number;
+    link_name:string;
+    link_url:string;
+    category_id:number;
+    created_at?:string;
+}
 // =================== **End link Functions** ===================
 
 // =================== **Workspace Functions** ===================
@@ -27,8 +58,23 @@ export async function addWorkspace(workspace:workspace) {
         .select()
     return data
 }
+export async function deleteWorkspace(id:number) {
+    const { error } = await supabase
+      .from('workspaces')
+      .delete()
+      .eq('id', id)
+}
+export async function updateWorkspace(workspace:workspace) {
+    const { data, error } = await supabase
+      .from('workspaces')
+      .update(workspace)
+      .eq('id', workspace.id)
+      .select()
+    return data
+}
+
 export interface workspace{
-    id: number;
+    id?: number;
     workspace_name:string;
     created_at?:string;
 }
@@ -52,9 +98,23 @@ export async function addCategory(category:category) {
         .select()
     return data
 }
-
+export async function deleteCategory(id:number) {
+    const { error } = await supabase
+      .from('categories')
+      .delete()
+      .eq('id', id)
+      return error
+}
+export async function updateCategory(Category:category) {
+    const { data, error } = await supabase
+      .from('categories')
+      .update(Category)
+      .eq('id', Category.id)
+      .select()
+    return data
+}
 export interface category{
-    id: number;
+    id?: number;
     workspace_id:number;
     category_name:string;
     created_at?:string;

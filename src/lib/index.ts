@@ -1,10 +1,19 @@
 // place files you want to import through the `$lib` alias in this folder.
-import { getWorkspaces,addWorkspace,getCategories,addCategory,getLinks } from "./DBFunctions";
 
 export {
     getWorkspaces,
+    addWorkspace,
+    deleteWorkspace,
+    updateWorkspace,
+
     getCategories,
     addCategory,
-    addWorkspace,
-    getLinks
-}
+    deleteCategory,
+    updateCategory,
+
+    getLinks,
+    addLink,
+    deleteLink,
+    updateLink
+
+} from "./DBFunctions"; 
