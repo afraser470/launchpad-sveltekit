@@ -1,8 +1,12 @@
-import { getData } from "$lib"
+import { getCategories, getWorkspaces, getLinks } from "$lib";
 
 export async function load() {
-  const { data } = await getData()
+  const workspaces = await getWorkspaces()
+  const categories = await getCategories()
+  const links = await getLinks()
   return {
-    countries: data ?? [],
+    workspaces,
+    categories,
+    links
   };
 }
